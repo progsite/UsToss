@@ -1,106 +1,140 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<head>
-<title>Toss for any decision!</title>
- <link rel="icon" href="fav.ico" type="image/x-icon">
-<style>
-.head{
-cursor: default;
-}
- body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toss for any decision!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
         }
-        #toss-button {
-            padding: 12px 24px;
-            font-size: 18px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        
+        .header {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .home-icon {
+            width: 30px;
+            position: absolute;
+            left: 0;
+            top: 0;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: transform 0.2s;
         }
-        #toss-button:hover {
-            background-color: #45a049;
+        
+        .home-icon:hover {
+            transform: scale(1.1);
         }
-        #toss-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
+        
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin: 1rem 0;
+            color: #333;
         }
-        #coin {
-            width: 150px;
-            height: 150px;
-            margin: 20px auto;
-            display: none;
+        
+        marquee {
+            margin: 1rem 0;
+            font-size: clamp(1rem, 3vw, 1.2rem);
         }
-        #result {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-            min-height: 36px;
-        }
+        
         .container {
+            width: 100%;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .icon{
-        width: 20px;
-        position: left;
+        
+        #toss-button {
+            padding: 1rem 2rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-</style>
-<script>
- document.addEventListener('DOMContentLoaded', function() {
-            const tossButton = document.getElementById('toss-button');
-            const coin = document.getElementById('coin');
-            const resultDiv = document.getElementById('result');
+        
+        #toss-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        #toss-button:active {
+            transform: translateY(1px);
+        }
+        
+        #toss-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        #coin-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        #coin {
+            width: clamp(120px, 30vw, 150px);
+            height: clamp(120px, 30vw, 150px);
+            display: none;
+            object-fit: contain;
+        }
+        
+        #result {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: bold;
+            margin: 1rem 0;
+            min-height: 2rem;
+            color: #333;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 600px) {
+            #toss-button {
+                padding: 1.5rem 2rem;
+                font-size: 1.5rem;
+                max-width: 100%;
+            }
             
-           
-            const spinningGifs = [
-                'giphy.gif'
-            ];
-            
-            
-            const headsImage = 'heads.jpg';
-            const tailsImage = 'tails.jpg';
-            
-            tossButton.addEventListener('click', function() {
-                
-                tossButton.disabled = true;
-                resultDiv.textContent = '';
-                
-                
-                coin.style.display = 'block';
-                coin.src = spinningGifs[Math.floor(Math.random() * spinningGifs.length)];
-                
-                
-                setTimeout(function() {
-                    
-                    const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
-                    
-                   
-                    resultDiv.textContent = `Result: ${result}!`;
-                    
-                    
-                    coin.src = result === 'Heads' ? headsImage : tailsImage;
-                    
-                    tossButton.disabled = false;
-                }, 3000);
-            });
-        });
-</script>
+            .home-icon {
+                width: 40px;
+            }
+        }
+    </style>
 </head>
-</body>
-<center>
-<img src="home.png" class="icon" float="left">
-<h1 class="head">Us Toss™</h1>
-<br>
-<br>
-<marquee><h3>Thank you for visiting Us Toss</h3></marquee>
-<br>
-  <div class="container">
+<body>
+    <div class="header">
+        <img src="home.png" class="home-icon" alt="Home">
+        <h1>Us Toss™</h1>
+        <marquee><h3>Thank you for visiting Us Toss</h3></marquee>
+    </div>
+
+    <div class="container">
         <button id="toss-button">Toss the Coin</button>
         <div id="coin-container">
             <img id="coin" alt="Coin">
@@ -108,6 +142,72 @@ cursor: default;
         <div id="result"></div>
     </div>
 
-</center>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tossButton = document.getElementById('toss-button');
+    const coin = document.getElementById('coin');
+    const resultDiv = document.getElementById('result');
+    const homeIcon = document.querySelector('.home-icon');
+    
+    let cheatMode = false;
+    let homeClicks = 0;
+    let resetClicks = 0;
+    let clickTimer;
+    
+    const spinningGifs = ['giphy.gif'];
+    const headsImage = 'heads.jpg';
+    const tailsImage = 'tails.jpg';
+    
+    // Cheat mode activation (3 clicks)
+    homeIcon.addEventListener('click', function() {
+        // For cheat activation
+        homeClicks++;
+        if (homeClicks === 3) {
+            activateCheatMode();
+        }
+        
+        // For reset (double click)
+        resetClicks++;
+        if (resetClicks === 2 && cheatMode) {
+            resetCheatMode();
+        }
+        
+        // Reset counters after 1 second
+        setTimeout(() => {
+            homeClicks = 0;
+            resetClicks = 0;
+        }, 1000);
+    });
+    
+    function activateCheatMode() {
+        cheatMode = true;
+        tossButton.style.backgroundColor = 'pink';
+        
+        homeClicks = 0; // Reset counter
+    }
+    
+    function resetCheatMode() {
+        cheatMode = false;
+        tossButton.style.backgroundColor = '';
+        
+        resetClicks = 0; // Reset counter
+    }
+    
+    tossButton.addEventListener('click', function() {
+        tossButton.disabled = true;
+        resultDiv.textContent = '';
+        
+        coin.style.display = 'block';
+        coin.src = spinningGifs[Math.floor(Math.random() * spinningGifs.length)];
+        
+        setTimeout(function() {
+            const result = cheatMode ? 'Tails' : (Math.random() < 0.5 ? 'Heads' : 'Tails');
+            resultDiv.textContent = `Result: ${result}!`;
+            coin.src = result === 'Heads' ? headsImage : tailsImage;
+            tossButton.disabled = false;
+        }, 3000);
+    });
+});
+    </script>
 </body>
 </html>
