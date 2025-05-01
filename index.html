@@ -1,0 +1,112 @@
+<html>
+<head>
+<head>
+<title>Toss for any decision!</title>
+<style>
+.head{
+cursor: default;
+}
+ body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #toss-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #toss-button:hover {
+            background-color: #45a049;
+        }
+        #toss-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #coin {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            display: none;
+        }
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            min-height: 36px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .icon{
+        width: 20px;
+        position: left;
+        }
+</style>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+            const tossButton = document.getElementById('toss-button');
+            const coin = document.getElementById('coin');
+            const resultDiv = document.getElementById('result');
+            
+           
+            const spinningGifs = [
+                'giphy.gif'
+            ];
+            
+            
+            const headsImage = 'heads.jpg';
+            const tailsImage = 'tails.jpg';
+            
+            tossButton.addEventListener('click', function() {
+                
+                tossButton.disabled = true;
+                resultDiv.textContent = '';
+                
+                
+                coin.style.display = 'block';
+                coin.src = spinningGifs[Math.floor(Math.random() * spinningGifs.length)];
+                
+                
+                setTimeout(function() {
+                    
+                    const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+                    
+                   
+                    resultDiv.textContent = `Result: ${result}!`;
+                    
+                    
+                    coin.src = result === 'Heads' ? headsImage : tailsImage;
+                    
+                    tossButton.disabled = false;
+                }, 3000);
+            });
+        });
+</script>
+</head>
+</body>
+<center>
+<img src="home.png" class="icon" float="left">
+<h1 class="head">Us Toss™</h1>
+<br>
+<br>
+<marquee><h3>Thank you for visiting Us Toss</h3></marquee>
+<br>
+  <div class="container">
+        <button id="toss-button">Toss the Coin</button>
+        <div id="coin-container">
+            <img id="coin" alt="Coin">
+        </div>
+        <div id="result"></div>
+    </div>
+
+</center>
+</body>
+</html>
