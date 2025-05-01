@@ -150,53 +150,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const homeIcon = document.querySelector('.home-icon');
     
     let cheatMode = false;
-    let homeClicks = 0;
-    let resetClicks = 0;
-    let clickTimer;
+    let lastClickTime = 0;
+    let clickCount = 0;
     
     const spinningGifs = ['giphy.gif'];
     const headsImage = 'heads.jpg';
     const tailsImage = 'tails.jpg';
     
-    // Cheat mode activation (3 clicks)
+    // Immediate response click handler
     homeIcon.addEventListener('click', function() {
-        // For cheat activation
-        homeClicks++;
-        if (homeClicks === 3) {
-            activateCheatMode();
+        const now = Date.now();
+        
+        // Reset count if clicks are too slow (300ms threshold)
+        if (now - lastClickTime > 300) {
+            clickCount = 0;
         }
         
-        // For reset (double click)
-        resetClicks++;
-        if (resetClicks === 2 && cheatMode) {
-            resetCheatMode();
+        clickCount++;
+        lastClickTime = now;
+        
+        // Activate cheat on 3 quick clicks
+        if (clickCount === 3) {
+            cheatMode = true;
+            tossButton.style.backgroundColor = 'pink';
+            clickCount = 0;
+            return;
         }
         
-        // Reset counters after 1 second
-        setTimeout(() => {
-            homeClicks = 0;
-            resetClicks = 0;
-        }, 1000);
+        // Reset cheat on 2 quick clicks when in cheat mode
+        if (clickCount === 2 && cheatMode) {
+            cheatMode = false;
+            tossButton.style.backgroundColor = '';
+            clickCount = 0;
+        }
     });
     
-    function activateCheatMode() {
-        cheatMode = true;
-        tossButton.style.backgroundColor = 'pink';
-        
-        homeClicks = 0; // Reset counter
-    }
-    
-    function resetCheatMode() {
-        cheatMode = false;
-        tossButton.style.backgroundColor = '';
-        
-        resetClicks = 0; // Reset counter
-    }
-    
+    // Toss function remains the same
     tossButton.addEventListener('click', function() {
         tossButton.disabled = true;
         resultDiv.textContent = '';
-        
         coin.style.display = 'block';
         coin.src = spinningGifs[Math.floor(Math.random() * spinningGifs.length)];
         
