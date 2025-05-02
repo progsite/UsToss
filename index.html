@@ -113,7 +113,7 @@
             color: #333;
         }
 
-        /* Mobile-specific styles */
+        
         @media (max-width: 600px) {
             #toss-button {
                 padding: 1.5rem 2rem;
@@ -203,11 +203,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const headsImage = 'heads.jpg';
     const tailsImage = 'tails.jpg';
     
-    // Immediate response click handler
+    
     homeIcon.addEventListener('click', function() {
         const now = Date.now();
         
-        // Reset count if clicks are too slow (300ms threshold)
+        
         if (now - lastClickTime > 300) {
             clickCount = 0;
         }
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clickCount++;
         lastClickTime = now;
         
-        // Activate cheat on 3 quick clicks
+        
         if (clickCount === 3) {
             cheatMode = true;
             tossButton.style.backgroundColor = 'pink';
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Reset cheat on 2 quick clicks when in cheat mode
+        
         if (clickCount === 2 && cheatMode) {
             cheatMode = false;
             tossButton.style.backgroundColor = '';
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Toss function remains the same
+    
     tossButton.addEventListener('click', function() {
         tossButton.disabled = true;
         resultDiv.textContent = '';
