@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Us Toss™</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .home-icon {
+            width: 30px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin: 1rem 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        
+        h2 {
+            color: #4CAF50;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        
+        .team-member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .team-info h3 {
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+        
+        .team-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .team-member img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html"><img src="home.png" class="home-icon" alt="Home"></a>
+        <h1>About Us Toss™</h1>
+    </div>
+
+    <div class="container">
+        <h2>Our Story</h2>
+        <p>Us Toss™ was born out of a simple idea - to create the most satisfying digital coin toss experience. We guarantee you, you'll be having fair toss  🤙🏻👅</p>
+        
+        <h2>How It Works</h2>
+        <p>Using advanced randomization algorithms, our coin toss simulator provides truly unpredictable results. Whether you're settling debates, making choices, or just having fun, you'll get a fair toss every time.</p>
+        
+        <h2>The Team</h2>
+        
+        <div class="team-member">
+            <img src="fav.ico" alt="Founder">
+            <div class="team-info">
+                <h3>Dhyan Bangera</h3>
+                <p>Founder & Lead Developer</p>
+                <p>Created the original coin toss algorithm and designed the first version of the app.</p>
+            </div>
+        </div>
+        
+        <div class="team-member">
+            <img src="fav.ico" alt="Designer">
+            <div class="team-info">
+                <h3>Aditya Sharma</h3>
+                <p>Co-Founder</p>
+                <p>Maintains UsToss™'s signature look while making improvements.</p>
+            </div>
+        </div>
+        
+        <h2>Contact Us</h2>
+        <p>Have questions or suggestions? We'd love to hear from you!</p>
+        <p>Email: <a href="mailto:dyakotyt25@gmail.com">dyakotyt25@gmail.com</a></p>
+    </div>
+</body>
+</html>
